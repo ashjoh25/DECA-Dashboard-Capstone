@@ -4,13 +4,17 @@ import Menu from '../../../components/Menu/Menu';
 import CreateEventBtn from './CreateEventBtn/CreateEventBtn';
 import EventCard from './EventCard/EventCard';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import { UserRoleContext } from '../../../context/UserRoleContext';
 import axios from 'axios';
 
-export default function EventsPage(props) {
+export default function EventsPage() {
+
+    const [events, setEvents] = useState([]);
 
     const location = useLocation();
+    const userRole = useContext(UserRoleContext);
     const searchParams = new URLSearchParams(location.search);
     const comp_id = searchParams.get('comp_id'); // Get comp_id from URL
     let title = "";
@@ -19,30 +23,31 @@ export default function EventsPage(props) {
         title = "Regionals";
     } else if (comp_id == 2){
         title = "States";
-    } else {
+    } else if (comp_id == 3) {
         title = "Nationals"
     }
 
     console.log(comp_id);
 
-    const [events, setEvents] = useState([]);
-
     useEffect(() => {
         const fetchEvents = async () => {
             if (!comp_id) {
-                console.error('comp_id is undefined');
+                console.error("comp_id is undefined");
                 return;
             }
             try {
+                console.log("Current comp_id:", comp_id);
                 const response = await axios.get(`http://localhost:8081/events/display/${comp_id}`);
-                setEvents(response.data);
+                console.log("Fetched events:", response.data);
+                setEvents(response.data); // Adjust based on your API response
             } catch (error) {
-                console.error('Error fetching events:', error);
+                console.error("Error fetching events:", error);
             }
         };
-        
+    
         fetchEvents();
     }, [comp_id]); 
+    
     
     
     const handleDeleteEvent = async (id) => {
@@ -57,7 +62,7 @@ export default function EventsPage(props) {
     };
 
 
-    if (props.userRole === "admin"){
+    if (userRole === "admin"){
         return (
             <>
                 <Header />
@@ -66,12 +71,12 @@ export default function EventsPage(props) {
                 <div id="main">
                 <a href="competitions">
                     <button id="ahh">
-                    <img src="blue.png" alt=""></img>
+                    <img id="eventimage" src="blue.png" alt=""></img>
                     </button>
                 </a>
                 </div>
                     
-               
+                
                     <h1 style={{color: "#00529B"}}>{title}</h1>
                     
 
@@ -85,21 +90,21 @@ export default function EventsPage(props) {
                     <div>
                         <h1 style={{ color: "#F5585E", zIndex: "999" }}>All Events:</h1>
                         <div className="events-container">
-                            {events.map((event, index) => (
+                            {events?.map((event, index) => (
                                 <EventCard
                                     key={event.event_id}
+                                    event_id={event.event_id} // This ensures event_id is available in props
+                                    comp_id={comp_id}
                                     acquired={null}
                                     title={event.event_name}
                                     descrip={event.event_descrip}
-                                    location={event.location}
-                                    date={event.date}
-                                    time={event.time}
                                     req_1={event.req_1}
                                     req_2={event.req_2}
                                     req_3={event.req_3}
                                     req_4={event.req_4}
                                     req_5={event.req_5}
-                                    userRole={props.userRole}
+                                    userRole={userRole}
+                                    setEvents={setEvents}
                                     onDelete={() => handleDeleteEvent(event.event_id)}
                                 />
                             ))}
@@ -121,7 +126,7 @@ export default function EventsPage(props) {
                 <div id="main">
                 <a href="competitions">
                     <button id="ahh">
-                    <img src="blue.png"alt=""></img>
+                    <img id="eventimage" src="blue.png"alt=""></img>
                     </button>
                 </a>
                 </div>
@@ -138,21 +143,18 @@ export default function EventsPage(props) {
                         <h1 style={{ color: "#F5585E", alignItems: "center" }}>All Events:</h1>
                         <div className="events-container">
                             {/* <EventCard acquired={false} title={"Binder"} descrip={"This is a binders event"} date={"2025-01-31"} /> */}
-                            {events.map((event, index) => (
+                            {events?.map((event, index) => (
                                 <EventCard
                                     key={event.event_id}
                                     acquired={false}
                                     title={event.event_name}
                                     descrip={event.event_descrip}
-                                    location={event.location}
-                                    date={event.date}
-                                    time={event.time}
                                     req_1={event.req_1}
                                     req_2={event.req_2}
                                     req_3={event.req_3}
                                     req_4={event.req_4}
                                     req_5={event.req_5}
-                                    userRole={props.userRole}
+                                    userRole={userRole}
                                     onDelete={() => handleDeleteEvent(event.event_id)}
                                 />
                             ))}
@@ -161,21 +163,18 @@ export default function EventsPage(props) {
                     <div >
                         <h1 style={{ color: "#F5585E", alignItems: "center", marginTop: "30px" }}>My Events:</h1>
                         <div className="events-container">
-                            {events.map((event, index) => (
+                            {events?.map((event, index) => (
                                 <EventCard
                                     key={event.event_id}
                                     acquired={true}
                                     title={event.event_name}
                                     descrip={event.event_descrip}
-                                    location={event.location}
-                                    date={event.date}
-                                    time={event.time}
                                     req_1={event.req_1}
                                     req_2={event.req_2}
                                     req_3={event.req_3}
                                     req_4={event.req_4}
                                     req_5={event.req_5}
-                                    userRole={props.userRole}
+                                    userRole={userRole}
                                     onDelete={() => handleDeleteEvent(event.event_id)}
                                 />
                             ))}

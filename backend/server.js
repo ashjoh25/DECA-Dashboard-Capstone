@@ -8,7 +8,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-
 // Enable CORS for requests from the frontend (React app)
 app.use(cors({
   origin: "*",
@@ -65,6 +64,12 @@ app.use('/participantdetails', participantRoutes);
 
 const fundraisersRoutes = require('./routes/fundraisersRoutes');
 app.use('/fundraisers', fundraisersRoutes);
+
+const announcementsRoutes = require('./routes/announcementsRoutes');
+app.use('/home', announcementsRoutes); 
+
+const todolistRoutes = require('./routes/todoListRoutes')
+app.use('/todolist', todolistRoutes)
 
 
 
