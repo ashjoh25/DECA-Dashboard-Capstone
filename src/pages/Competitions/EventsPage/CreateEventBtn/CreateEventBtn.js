@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './CreateEventBtn.css';
 
 import axios from '../../../../services/axiosConfig';
+import API_URL from "../../../../config";
+
 
 const CreateEventBtn = ({ events, setEvents, comp_id }) => {
 

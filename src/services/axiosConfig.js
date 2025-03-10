@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8081', // Your backend API base URL
+  baseURL: 'https://deca-dashboard-capstone-581238473076.us-central1.run.app', // Your backend API base URL
   headers: {
     'Content-Type': 'application/json',
   },

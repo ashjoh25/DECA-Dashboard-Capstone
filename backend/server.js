@@ -11,19 +11,31 @@ app.use(express.urlencoded({ extended: true }));
 
 // Enable CORS for requests from the frontend (React app)
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: "*",
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 }));
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://deca-dashboard-3a2db.web.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 
 // Set up raw MySQL database connection
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
+  //host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  socket_path: process.env.SOCKET_PATH,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 

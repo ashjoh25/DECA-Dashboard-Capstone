@@ -6,6 +6,8 @@ import ResourceCards from './ResourceCard/ResourceCard';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import API_URL from '../../config';
+
 const ResourcesPage = (props) => {
   // const userRole = 'admin'; // Set to 'admin' or any other role for testing
   const [resources, setResources] = useState([]);
@@ -14,7 +16,7 @@ const ResourcesPage = (props) => {
   useEffect(() => {
     const fetchResources = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/resources/display');
+        const response = await axios.get(`https://deca-dashboard-capstone-581238473076.us-central1.run.app/resources/display`);
         setResources(response.data);
       } catch (error) {
         console.error('Error fetching resources:', error);
