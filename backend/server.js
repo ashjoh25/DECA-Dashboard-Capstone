@@ -61,6 +61,7 @@ app.use('/announcements', announcementsRoutes);
 
 
 
+
 // Define test routes
 app.get('/', (req, res) => {
   res.json("From backend");
