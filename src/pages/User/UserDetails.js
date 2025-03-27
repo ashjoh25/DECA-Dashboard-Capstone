@@ -1,22 +1,13 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from 'react';
-=======
 import React, { useState, useEffect, useContext } from 'react';
->>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import './ParticipantDetails.css';
+import './UserDetails.css';
 import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
-
-<<<<<<< HEAD
-import { useContext } from 'react';
-=======
->>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
 import { UserRoleContext } from '../../context/UserRoleContext';
 
-export default function ParticipantDetails() {
-  let userRole = useContext(UserRoleContext);
+export default function UserDetails() {
+  const userRole = useContext(UserRoleContext);
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const userFirst = params.get('userFirst');
@@ -35,15 +26,17 @@ export default function ParticipantDetails() {
         });
         setParticipant(response.data);
         setSelectedRole(response.data.position || '');
-        setLoading(false);
       } catch (err) {
         console.error('Error fetching participant details:', err);
         setError('Failed to fetch participant details.');
+      } finally {
         setLoading(false);
       }
     };
 
-    fetchParticipantDetails();
+    if (userFirst && userLast) {
+      fetchParticipantDetails();
+    }
   }, [userFirst, userLast]);
 
   const handleRoleChange = (event) => {
@@ -61,11 +54,6 @@ export default function ParticipantDetails() {
       return;
     }
 
-    console.log('Sending request with:', {
-      userIds: [participant.userId],
-      position: selectedRole,
-    });
-
     try {
       await axios.put('http://localhost:8081/participantdetails/updateusers', {
         userIds: [participant.userId],
@@ -80,7 +68,7 @@ export default function ParticipantDetails() {
   };
 
   const renderEvents = () => {
-    if (!participant || !participant.events || participant.events.length === 0) {
+    if (!participant?.events?.length) {
       return <p>No events</p>;
     }
 
@@ -106,12 +94,11 @@ export default function ParticipantDetails() {
           {renderEvents()}
         </div>
 
-        {/* Only show this section if userRole is "admin" */}
-        {userRole === "admin" && (
+        {userRole === 'admin' && (
           <div className="roleselection">
             <label>Select Role: </label>
             <select className="roleselect" value={selectedRole} onChange={handleRoleChange}>
-              <option id="pickrole" value="">--Select Role--</option>
+              <option value="">--Select Role--</option>
               <option value="Admin">Admin</option>
               <option value="Participant">Participant</option>
               <option value="Board Member">Board Member</option>

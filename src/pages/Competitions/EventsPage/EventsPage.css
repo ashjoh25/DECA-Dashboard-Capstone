@@ -1,10 +1,35 @@
+<<<<<<< HEAD
 .events-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Always 3 cards per row */
+=======
+#eventheader {
+    color: #00529B;
+    text-align: center;
+    padding-left: 18vw;
+    font-size: 35px;
+    margin-top: 5vh;
+}
+
+#allevents {
+    padding-left: 18vw;
+    color: #F5585E;
+    z-index: 999;
+}
+
+.events-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Always 4 cards per row */
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
     gap: 28px;
     max-width: 80%;
     margin: 16px auto;
     margin-left: 1px;
+<<<<<<< HEAD
+=======
+    text-align: center;
+    padding-left: 18vw;
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
 }
 
 .event-card {
@@ -17,6 +42,11 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
+<<<<<<< HEAD
+=======
+    /* text-align: center; */
+    padding-left: 18vw; 
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
 }
 
 .add-event-container {
@@ -64,7 +94,11 @@
     height: 1vh;
     display: flex;
     align-items: center;
+<<<<<<< HEAD
   }
+=======
+}
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
   
 h1 {
     margin: 0;

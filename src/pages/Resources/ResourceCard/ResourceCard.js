@@ -18,7 +18,11 @@ const Resource = ({ text, link, pdf, onDelete, userRole }) => {
           Open PDF
         </a>
       )}
+<<<<<<< HEAD
       {userRole === 'admin' && (
+=======
+      {(userRole === 'admin' || userRole === 'board member') && (
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
         <button className="resource-button" onClick={onDelete}>
           Delete
         </button>

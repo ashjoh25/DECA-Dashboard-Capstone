@@ -10,4 +10,39 @@
     padding: 10px;
     color: white;
     border: solid;
+<<<<<<< HEAD
+=======
+    align-self: "center";
+    font-size: 18px;
+}
+
+.todo-list-div {
+    background-color: "#E3E8F1";
+    border-radius: "20px";
+    padding: "30px";
+    display: "flex";
+    flex-direction: "column";
+    justify-content: "space-between";
+    height: "100%";
+}
+
+.comment-div {
+    background-color: "#E3E8F1";
+    border-radius: "20px";
+    padding: "30px";
+}
+
+.todolistcont {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2vw;
+    padding-left: 18vw;
+}
+
+#todolistheader {
+    text-align: center;
+    padding-left: 18vw;
+    padding-bottom: 2vh;
+    color:#00529B;
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
 }

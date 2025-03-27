@@ -61,7 +61,10 @@ app.use('/announcements', announcementsRoutes);
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
 // Define test routes
 app.get('/', (req, res) => {
   res.json("From backend");

@@ -30,7 +30,11 @@ const ResourcesPage = () => {
     <div className="resources-page">
       <Header />
       <Menu />
+<<<<<<< HEAD
       <h1 className="comp">Resources</h1>
+=======
+      <h1 className="resources-header">Resources</h1>
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
       <ResourceCards resources={resources} setResources={setResources} userRole={userRole} />
     </div>
   );

@@ -8,6 +8,7 @@ router.get('/displayusers', async (req, res) => {
   const { position } = req.query;
 
   try {
+<<<<<<< HEAD
     // Fetch users with the specified position
     console.log(User.getTableName());
     const users = await User.findAll({
@@ -19,12 +20,20 @@ router.get('/displayusers', async (req, res) => {
     }
 
     res.json(users);
+=======
+    console.log(User.getTableName());
+    const users = await User.findAll({ where: { position } });
+
+    // Return an empty array instead of a 404 error if no users exist
+    res.json(users.length ? users : []);
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
   } catch (error) {
     console.error('Error fetching users:', error);
     res.status(500).json({ error: 'Failed to fetch users.' });
   }
 });
 
+<<<<<<< HEAD
 // Route to fetch users with no role
 router.get('/displayunapprovedusers', async (req, res) => {
   const { position } = req.query;
@@ -32,6 +41,16 @@ router.get('/displayunapprovedusers', async (req, res) => {
   try {
     // Fetch users with the specified position
     console.log(User.getTableName());
+=======
+
+
+// Route to fetch users with no role
+router.get('/displayunapprovedusers', async (req, res) => {
+  try {
+    console.log(User.getTableName());
+    
+    // Fetch users who have no position or an unapproved position
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
     const users = await User.findAll({
       where: {
         [Op.or]: [
@@ -40,6 +59,7 @@ router.get('/displayunapprovedusers', async (req, res) => {
           { position: "no role" }
         ]
       }
+<<<<<<< HEAD
     })
 
     if (!users || users.length === 0) {
@@ -47,6 +67,12 @@ router.get('/displayunapprovedusers', async (req, res) => {
     }
 
     res.json(users);
+=======
+    });
+
+    // Instead of throwing an error, return an empty array if no users are found
+    res.json(users.length > 0 ? users : []);
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
   } catch (error) {
     console.error('Error fetching users:', error);
     res.status(500).json({ error: 'Failed to fetch users.' });
@@ -55,6 +81,10 @@ router.get('/displayunapprovedusers', async (req, res) => {
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
 // Route to fetch a user's info and events
 router.get('/displaydetails', async (req, res) => {
   const { userFirst, userLast } = req.query;
@@ -156,6 +186,9 @@ router.delete("/deleteusers", async (req, res) => {
 
 
 
+<<<<<<< HEAD
 
 // Export the router
+=======
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
 module.exports = router;

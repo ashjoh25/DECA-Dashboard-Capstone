@@ -40,4 +40,8 @@ export default function AnnounceCard(props) {
     }
 
     return null;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14

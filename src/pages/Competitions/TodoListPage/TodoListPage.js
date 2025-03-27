@@ -10,22 +10,55 @@ import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useLocation } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
+<<<<<<< HEAD
 
 
 export default function TodoListPage(props) {
+=======
+import { useAuth0 } from '@auth0/auth0-react';
+
+
+export default function TodoListPage(props) {
+
+    const { user: viewing_user, isAuthenticated } = useAuth0();
+    const [viewing_user_id, setViewingUserId] = useState(null);
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
     const [todoData, setTodoData] = useState(null);
     const [eventData, setEventData] = useState(null);
     const [statuses, setStatuses] = useState({});
     const [currentComment, setCurrentComment] = useState('');
+<<<<<<< HEAD
     const userRole = useContext(UserRoleContext);
     
     const [searchParams] = useSearchParams();
     const user_id = searchParams.get("user_id");
     const event_id = searchParams.get("event_id");
+=======
+    const [isThisMyList, setIsThisMyList] = useState(false);
+
+    const userRole = useContext(UserRoleContext);
+
+    // let isThisMyList = false;
+    
+    // const [searchParams] = useSearchParams();
+    // const user_id = searchParams.get("user_id");
+    // const event_id = searchParams.get("event_id");
+    // const user = searchParams.get("user");
+
+    const location = useLocation();
+    const { user_id, event_id, user, title } = location.state || {};  // Retrieve state from navigation
+
+    console.log("Received data:", user_id, event_id, user, title); 
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
 
     console.log("user_id:", user_id, "event_id:", event_id);
 
     useEffect(() => {
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
         const fetchTodoData = async () => {
             try {
                 const response = await axios.get(`http://localhost:8081/todolist/user-event/${event_id}/${user_id}`);
@@ -46,12 +79,44 @@ export default function TodoListPage(props) {
             }
         };
 
+<<<<<<< HEAD
+=======
+        const fetchViewingUserId = async () => {
+            if (viewing_user?.email) {  // Check if user and user.email are available
+                try {
+                    const response = await axios.get('http://localhost:8081/user/get-user-id', {
+                        params: { email: viewing_user.email }  // Pass the email as a query parameter
+                    });
+
+                    if (response.data?.user_id) {
+                        setViewingUserId(response.data.user_id);
+                        setIsThisMyList(response.data.user_id === user_id);
+                        console.log(isThisMyList);
+                    } else {
+                        console.error('Viewing User ID not found');
+                    }
+                } catch (error) {
+                    console.error('Error fetching viewing user ID:', error);
+                }
+            } else {
+                console.error('Viewing user email is not available');
+            }
+        };
+
+
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
         // Fetch both todo and event data if event_id and user_id are available
         if (event_id && user_id) {
             fetchTodoData();
             fetchEventData();
         }
+<<<<<<< HEAD
     }, [event_id, user_id]);
+=======
+
+    fetchViewingUserId();
+    }, [event_id, user_id, viewing_user_id]);
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
 
     const handleCommentSave = (newComment) => {
         setTodoData((prevTodoData) => ({
@@ -89,8 +154,11 @@ export default function TodoListPage(props) {
     };
     
 
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
     const requirements = eventData
     ? Object.keys(eventData)
         .filter(key => key.startsWith('req_'))  // Filter keys starting with "req_"
@@ -98,13 +166,22 @@ export default function TodoListPage(props) {
         .filter(req => req !== null && req !== '')  // Exclude null or empty string values
     : [];
 
+<<<<<<< HEAD
     if (userRole === "admin") {
+=======
+    if (userRole === "admin" || !isThisMyList) {
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
         return (
             <>
                 <Header />
                 <Menu />
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginTop: "50px", gap: "20px" }}>
+<<<<<<< HEAD
                     <h1 className="header-text">Julia Thompson: Binder Event</h1>
+=======
+                    <h1 id="todolistheader">{title}: {user?.first_name} {user?.last_name}</h1>
+                    <div className="todolistcont">
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
                     <div style={{ backgroundColor: "#E3E8F1", borderRadius: "20px", padding: "30px", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
                         <h1 style={{ textAlign: "center" }}>To Do List</h1>
                         <div style={{ flex: 1 }}>
@@ -136,12 +213,19 @@ export default function TodoListPage(props) {
                         </div>
                         <button
                             className="saveStatuses"
+<<<<<<< HEAD
                             style={{ alignSelf: "center" }}
+=======
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
                             onClick={() => saveStatuses(event_id, user_id, statuses)}
                         >
                             Save Statuses
                         </button>
                     </div>
+<<<<<<< HEAD
+=======
+                    <div>
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
                     <div style={{ backgroundColor: "#E3E8F1", borderRadius: "20px", padding: "30px" }}>
                         <h1>Comment(s)</h1>
                         <p className="comment">{todoData?.comment || "No comment available"}</p>
@@ -153,6 +237,11 @@ export default function TodoListPage(props) {
                         currentComment={todoData?.comment || "No comment available"}
                         onCommentSave={handleCommentSave} // Pass the handler to the child component
                     />
+<<<<<<< HEAD
+=======
+                    </div>
+                    </div>
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
 
                 </div>
             </>
@@ -163,10 +252,18 @@ export default function TodoListPage(props) {
             <>
             <Header />
             <Menu />
+<<<<<<< HEAD
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginTop: "50px", gap: "20px" }}>
                 <h1 className="header-text">Julia Thompson: Binder Event</h1>
                 <div style={{ backgroundColor: "#E3E8F1", borderRadius: "20px", padding: "30px", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
                     <h1 style={{ textAlign: "center" }}>To Do List</h1>
+=======
+            <div id="todolistcont" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginTop: "50px", gap: "20px" }}>
+                <h1 id="todolistheader">{title}</h1>
+                <div className="todolistcont">
+                <div style={{ backgroundColor: "#E3E8F1", borderRadius: "20px", padding: "30px", display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
+                    <h1 style={{ textAlign: "center" }}>Todo List</h1>
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
                     <div style={{ flex: 1 }}>
                         {todoData && eventData ? (
                             [1, 2, 3, 4, 5].map((index) => {
@@ -195,13 +292,22 @@ export default function TodoListPage(props) {
                         )}
                     </div>
                 </div>
+<<<<<<< HEAD
+=======
+                <div>
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
                 <div style={{ backgroundColor: "#E3E8F1", borderRadius: "20px", padding: "30px" }}>
                     <h1>Comment(s)</h1>
                     <p className="comment">{todoData?.comment || "No comment available"}</p>
                 </div>
 
                 <UploadPDFBtn requirements={requirements} eventId={event_id} userId={user_id} />
+<<<<<<< HEAD
 
+=======
+                </div>
+                </div>
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
             </div>
         </>
     );

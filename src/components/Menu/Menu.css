@@ -12,6 +12,15 @@
     overflow-y: auto; /* Scrollable if content exceeds height */
 }
 
+<<<<<<< HEAD
+=======
+/* Menu title */
+.menu-title {
+    color: #00529B;
+    text-align: center;
+}
+
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
 /* Menu list */
 .menu-list {
     list-style: none; /* Remove bullet points */

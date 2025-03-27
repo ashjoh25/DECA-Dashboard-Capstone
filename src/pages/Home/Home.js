@@ -64,7 +64,11 @@ export default function Home() {
 
           {(userRole === 'admin' || userRole === 'board member') && (
             <div>
+<<<<<<< HEAD
               <AddGCalEvent />
+=======
+              {/* <AddGCalEvent /> */}
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
             </div>
           )}
         </div>

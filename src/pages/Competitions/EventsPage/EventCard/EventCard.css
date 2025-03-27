@@ -6,6 +6,7 @@
     margin-top: 10px;
 }
 
+<<<<<<< HEAD
 button.view-requesters-btn {
     background-color: #6786A3;
     color: white;
@@ -15,6 +16,8 @@ button.view-requesters-btn {
     cursor: pointer;
 }
 
+=======
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
 .align-center {
     display: flex;
     flex-direction: column;
@@ -22,3 +25,30 @@ button.view-requesters-btn {
     justify-content: center;
 }
 
+<<<<<<< HEAD
+=======
+
+button.event-card-btn {
+    color: white;
+    border-radius: 5px;
+    padding: 8px 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#view-requesters, #delete-event {
+    background-color: #6786A3;
+}
+
+#view-todo-list {
+    background-color: #00529B;
+}
+
+#request-event {
+    background-color: #00984D;
+}
+
+#cancel-request {
+    background-color: #F5585E;
+}
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14

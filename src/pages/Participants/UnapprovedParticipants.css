@@ -23,3 +23,16 @@
     margin-top: 3vh;
 }
 
+<<<<<<< HEAD
+=======
+#deletebtn {
+    background-color: #F5585E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    margin-left: 1vw;
+}
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14

@@ -32,9 +32,15 @@ export default function Contact({ userRole }) {
     <>
       <Header />
       <h1>Profile</h1>
+<<<<<<< HEAD
       {user && <p>Name: {user.given_name} {user.family_name}</p>}
       {user && <p>Email: {user.email}</p>}
       {user && <p>Class Year: {}</p>}
+=======
+      {/* {user && <p>Name: {user.given_name} {user.family_name}</p>}
+      {user && <p>Email: {user.email}</p>}
+      {user && <p>Class Year: {}</p>} */}
+>>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
       <div className="home-container">
         <div className="calendar-container">
           {/* Display fetched data if available */}
