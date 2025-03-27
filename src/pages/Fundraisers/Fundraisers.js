@@ -22,12 +22,7 @@ const FundraisersPage = () => {
         console.error('Error fetching fundraisers:', error);
       }
     };
-  
-<<<<<<< HEAD
-    fetchFundraisers();nv
-=======
     fetchFundraisers();
->>>>>>> ccf33a0317affe2740c217ec32d58adb1167cd14
   }, []);
 
   return (
