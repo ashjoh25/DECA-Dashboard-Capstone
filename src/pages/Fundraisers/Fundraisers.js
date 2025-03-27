@@ -23,7 +23,7 @@ const FundraisersPage = () => {
       }
     };
   
-    fetchFundraisers();
+    fetchFundraisers();nv
   }, []);
 
   return (
